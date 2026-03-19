@@ -7,7 +7,9 @@ if [[ $# -eq 0 ]]; then
   exit 1
 fi
 
+# If the argument is an empty string
 if [[ -z "$1" ]]; then
+  # Display an error message and exit
   echo "Project name cannot be empty."
   exit 1
 fi
