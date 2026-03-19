@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 
 # If no arguments are provided
-if [ $# -eq 0 ]; then
+if [[ $# -eq 0 ]]; then
   # Display a help message and exit the script
   echo "Usage: $(basename "$0") <project-name>"
   exit 1
 fi
 
-# TODO -> Test the argument against -z
+if [[ -z "$1" ]]; then
+  echo "Project name cannot be empty."
+  exit 1
+fi
 
 # If NPM isn't installed
 if ! command -v npm >/dev/null; then
