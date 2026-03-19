@@ -7,7 +7,3 @@ written in Bash
 - Version: `0.0.1`
 - Developed on: Ubuntu (WSL2)
 - License: MIT
-
-## Scripts
-
-###
