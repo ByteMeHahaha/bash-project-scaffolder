@@ -1,11 +1,17 @@
 #!/usr/bin/env bash
 
+# If no arguments are provided
 if [ $# -eq 0 ]; then
+  # Display a help message and exit the script
   echo "Usage: $(basename "$0") <project-name>"
   exit 1
 fi
 
+# TODO -> Test the argument against -z
+
+# If NPM isn't installed
 if ! command -v npm >/dev/null; then
+  # Display an error message and exit
   echo "npm required but not installed."
   exit 1
 fi
@@ -15,7 +21,7 @@ project="$1"
 
 # Try create the project directory
 mkdir "$project" || {
-  # If the
+  # If the directory exists, exit with code 1
   echo "Directory already exists"
   exit 1
 }
@@ -24,24 +30,42 @@ mkdir "$project" || {
 (
   cd "$project"
 
+  # Create the dist, src, and tests directories
   mkdir -p dist src tests
+
+  #
   touch src/index.ts
 
+  # Create a .gitignore
   echo -e "node_modules/\ndist/" > .gitignore
 
+  # Initialise an NPM project
   npm init -y
+
+  # Print a blank line for readability
   echo ""
 
+  # Install TypeScript as a dev dependency
   npm i -D typescript
+
+  # Blank line for readability
   echo ""
 
+  # Initialise a TypeScript project
   npx tsc --version && npx tsc --init
+
+  # Blank line for readability
   echo ""
 
+  # If git is installed
   if command -v git >/dev/null; then
+    # Initialise a repository
     git init
+
+    # Blank line for readability
     echo ""
   fi
 
+  # Message to display when the script is done
   echo "TypeScript project created"
 )
