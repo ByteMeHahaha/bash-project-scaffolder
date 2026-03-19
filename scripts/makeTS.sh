@@ -33,7 +33,7 @@ mkdir "$project" || {
   # Create the dist, src, and tests directories
   mkdir -p dist src tests
 
-  #
+  # Create an empty index.ts file
   touch src/index.ts
 
   # Create a .gitignore
