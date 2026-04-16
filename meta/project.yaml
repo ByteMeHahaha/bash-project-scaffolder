@@ -1,12 +1,12 @@
 project-meta:
   project-name: Bash Project Scaffolding Scripts
   date-started: 2026-03-16
-  last-updated: 2026-03-19
+  last-updated: 2026-04-16
   languages:
     - Bash
   status: Experimental
   license: MIT
-  version: 0.0.1
+  version: 0.0.2
 
 build:
   dev-environments:
