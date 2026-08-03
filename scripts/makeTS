@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
+# Save the usage message in a variable
+usage="Usage: $(basename "$0") <project-name>"
+
 # If no arguments are provided
 if [[ $# -eq 0 ]]; then
   # Display a help message and exit the script
-  echo "Usage: $(basename "$0") <project-name>"
+  echo "$usage"
   exit 1
 fi
 
