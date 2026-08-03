@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+# Helper function to close script with an error message
+die() {
+  # Display a message via stderr
+  echo "Error: $*" >&2
+  # Exit with error code 1
+  exit 1
+}
+
 # Save the usage message in a variable
 usage="Usage: $(basename "$0") <project-name>"
 
@@ -13,26 +21,20 @@ fi
 # If the argument is an empty string
 if [[ -z "$1" ]]; then
   # Display an error message and exit
-  echo "Project name cannot be empty."
-  exit 1
+  die "Project name cannot be empty."
 fi
 
 # If NPM isn't installed
 if ! command -v npm >/dev/null; then
   # Display an error message and exit
-  echo "npm required but not installed."
-  exit 1
+  die "npm required but not installed."
 fi
 
 # Store the project in its own variable
 project="$1"
 
 # Try create the project directory
-mkdir "$project" || {
-  # If the directory exists, exit with code 1
-  echo "Directory already exists"
-  exit 1
-}
+mkdir "$project" || die "Cannot create project directory $project"
 
 # Run the project scaffolding in a subshell
 (
@@ -44,7 +46,7 @@ mkdir "$project" || {
   # Create an empty index.ts file
   touch src/index.ts
 
-  # Create a .gitignore
+  # Create a .gitignore file
   echo -e "node_modules/\ndist/" > .gitignore
 
   # Initialise an NPM project
