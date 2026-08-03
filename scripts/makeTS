@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+#
+set -euo pipefail
+
 # Helper function to close script with an error message
 die() {
   # Display a message via stderr
@@ -21,16 +24,16 @@ fi
 # If the argument is an empty string
 if [[ -z "$1" ]]; then
   # Display an error message and exit
-  die "Project name cannot be empty."
+  die "Project name is required."
 fi
 
-# If NPM isn't installed
+# If NPM is not installed
 if ! command -v npm >/dev/null; then
   # Display an error message and exit
   die "npm required but not installed."
 fi
 
-# Store the project in its own variable
+# Store the project name in its own variable
 project="$1"
 
 # Try create the project directory
@@ -40,8 +43,8 @@ mkdir "$project" || die "Cannot create project directory $project"
 (
   cd "$project"
 
-  # Create the dist, src, and tests directories
-  mkdir -p dist src tests
+  # Create the dist, src, and test directories
+  mkdir -p dist src test
 
   # Create an empty index.ts file
   touch src/index.ts
@@ -58,21 +61,21 @@ mkdir "$project" || die "Cannot create project directory $project"
   # Install TypeScript as a dev dependency
   npm i -D typescript
 
-  # Blank line for readability
+  # Echo blank line for readability
   echo ""
 
   # Initialise a TypeScript project
   npx tsc --version >/dev/null && npx tsc --init
 
-  # Blank line for readability
+  # Echo blank line for readability
   echo ""
 
-  # If git is installed
+  # If Git is installed
   if command -v git >/dev/null; then
     # Initialise a repository
     git init
 
-    # Blank line for readability
+    # Echo a blank line for readability
     echo ""
   fi
 
