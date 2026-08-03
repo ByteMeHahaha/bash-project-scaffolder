@@ -4,7 +4,7 @@ A collection of simple programming project scaffolding scripts
 written in Bash
 
 - Author: Ethan Kletschke
-- Version: `0.0.2`
+- Version: `0.0.3`
 - Developed on: Ubuntu (WSL2)
 - License: MIT
 
@@ -25,5 +25,6 @@ Usage: `makeTS <project-name>`
 
 Requirements:
 
-- `npm` (Node.js Package Manager)
-- `git` (Git)
+- `npm` (Node.js Package Manager).
+  - The command will not continue if `npm` is not installed.
+- `git` (Git).
