@@ -27,9 +27,55 @@ Where OPTS includes:
 EOF
 
 # Initialise Boolean flags for the above options
-bare=false
-fixed=false
-gitRepo=false
-makefile=false
-scripts=false
-verbose=false
+bare=false # Bare, flat project structure (no src or bin folders)
+fixed=false # Fixed format code
+gitRepo=false # Git repository
+makefile=false # Makefile
+scripts=false # Bash build scripts
+verbose=false # Verbose output
+showHelp=false # Shows help
+invalidFlag=false # Any other flag
+
+while getopts 'bfghmsvx' opt; do
+	case "$opt" in
+		b)
+			# Ensure a bare project is created and not a full project
+			bare=true
+
+			# Set all build-related flags to false
+			makefile=false
+			scripts=false
+			gitRepo=false
+			;;
+		f)
+			# Ensure that a bare project is not created
+			bare=false
+
+			# Set all build-related flags to true
+			makefile=true
+			scripts=true
+			gitRepo=true
+			;;
+		g)
+			gitRepo=true
+			;;
+		h)
+			showHelp=true
+			;;
+		m)
+			makefile=true
+			;;
+		s)
+			scripts=true
+			;;
+		v)
+			verbose=true
+			;;
+		x)
+			fixed=true
+			;;
+		?)
+			invalidFlag=true
+			;;
+	esac
+done
