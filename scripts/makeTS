@@ -5,10 +5,10 @@ set -euo pipefail
 
 # Helper function to close script with an error message
 die() {
-  # Display a message via stderr
-  echo "Error: $*" >&2
-  # Exit with error code 1
-  exit 1
+	# Display a message via stderr
+	echo "Error: $*" >&2
+	# Exit with error code 1
+	exit 1
 }
 
 # Save the usage message in a variable
@@ -16,21 +16,21 @@ usage="Usage: $(basename "$0") <project-name>"
 
 # If no arguments are provided
 if [[ $# -eq 0 ]]; then
-  # Display a help message and exit the script
-  echo "$usage"
-  exit 1
+	# Display a help message and exit the script
+	echo "$usage"
+	exit 1
 fi
 
 # If the argument is an empty string
 if [[ -z "$1" ]]; then
-  # Display an error message and exit
-  die "Project name is required."
+	# Display an error message and exit
+	die "Project name is required."
 fi
 
 # If NPM is not installed
 if ! command -v npm >/dev/null; then
-  # Display an error message and exit
-  die "npm required but not installed."
+	# Display an error message and exit
+	die "npm required but not installed."
 fi
 
 # Store the project name in its own variable
@@ -41,44 +41,44 @@ mkdir "$project" || die "Cannot create project directory $project"
 
 # Run the project scaffolding in a subshell
 (
-  cd "$project"
+	cd "$project"
 
-  # Create the dist, src, and test directories
-  mkdir -p dist src test
+	# Create the dist, src, and test directories
+	mkdir -p dist src test
 
-  # Create an empty index.ts file
-  touch src/index.ts
+	# Create an empty index.ts file
+	touch src/index.ts
 
-  # Create a .gitignore file
-  echo -e "node_modules/\ndist/" > .gitignore
+	# Create a .gitignore file
+	echo -e "node_modules/\ndist/" > .gitignore
 
-  # Initialise an NPM project
-  npm init -y
+	# Initialise an NPM project
+	npm init -y
 
-  # Print a blank line for readability
-  echo ""
+	# Print a blank line for readability
+	echo ""
 
-  # Install TypeScript as a dev dependency
-  npm i -D typescript
+	# Install TypeScript as a dev dependency
+	npm i -D typescript
 
-  # Echo blank line for readability
-  echo ""
+	# Echo blank line for readability
+	echo ""
 
-  # Initialise a TypeScript project
-  npx tsc --version >/dev/null && npx tsc --init
+	# Initialise a TypeScript project
+	npx tsc --version >/dev/null && npx tsc --init
 
-  # Echo blank line for readability
-  echo ""
+	# Echo blank line for readability
+	echo ""
 
-  # If Git is installed
-  if command -v git >/dev/null; then
-    # Initialise a repository
-    git init
+	# If Git is installed
+	if command -v git >/dev/null; then
+		# Initialise a repository
+		git init
 
-    # Echo a blank line for readability
-    echo ""
-  fi
+		# Echo a blank line for readability
+		echo ""
+	fi
 
-  # Message to display when the script is done
-  echo "TypeScript project created"
+	# Message to display when the script is done
+	echo "TypeScript project created"
 )
