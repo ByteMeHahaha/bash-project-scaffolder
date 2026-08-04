@@ -25,3 +25,11 @@ Where OPTS includes:
 -v => Enable verbose output
 -x => Uses fixed format source code instead of free format.
 EOF
+
+# Initialise Boolean flags for the above options
+bare=false
+fixed=false
+gitRepo=false
+makefile=false
+scripts=false
+verbose=false
