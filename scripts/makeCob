@@ -16,4 +16,12 @@ read usage <<EOF
 Usage: $(basename "$0") <project-name> [OPTS]...
 -------------------------------------------------
 Where OPTS includes:
+-b => Creates a minimal, flattened project structure.
+-f => Creates a full project structure (same as specifying -gsm)
+-g => Creates a Git repository for the project.
+-h => Show this message and exit.
+-m => Initialises a Makefile for the project.
+-s => Initialises Bash build scripts for the project.
+-v => Enable verbose output
+-x => Uses fixed format source code instead of free format.
 EOF
