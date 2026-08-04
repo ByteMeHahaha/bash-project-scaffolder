@@ -1,9 +1,19 @@
 #!/usr/bin/env bash
 
+# Allows the script to stop running when a command fails (-e).
+# Additionally treats unset variables as an error (-u) and
+# fails pipelines when any command within them fails (-o pipefail)
+set -euo pipefail
+
+# Helper function for error handling
+die() {
+	echo "Error: $*" >&2;
+	exit 1;
+}
+
 # Store the help menu in "$usage"
 read usage <<EOF
 Usage: $(basename "$0") <project-name> [OPTS]...
-----------------------
+-------------------------------------------------
 Where OPTS includes:
-(WIP)
 EOF
