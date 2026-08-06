@@ -7,8 +7,10 @@ set -euo pipefail
 
 # Helper function for error handling
 die() {
-	echo "Error: $*" >&2;
-	exit 1;
+	# Display an error message to stderr
+	echo "Error: $*" >&2
+	# Exit the script with an error code
+	exit 1
 }
 
 # Store the help menu in "$usage"
@@ -33,8 +35,9 @@ gitRepo=false # Git repository
 makefile=false # Makefile
 scripts=false # Bash build scripts
 verbose=false # Verbose output
-showHelp=false # Shows help
-invalidFlag=false # Any other flag
+
+# String variables
+projName="" # Name of project directory
 
 while getopts 'bfghmsvx' opt; do
 	case "$opt" in
@@ -57,10 +60,13 @@ while getopts 'bfghmsvx' opt; do
 			gitRepo=true
 			;;
 		g)
+			# Allows for creating a Git repo later on in the script
 			gitRepo=true
 			;;
 		h)
-			showHelp=true
+			# Display the help message and exit
+			echo "$usage"
+			exit 0
 			;;
 		m)
 			makefile=true
@@ -75,7 +81,7 @@ while getopts 'bfghmsvx' opt; do
 			fixed=true
 			;;
 		?)
-			invalidFlag=true
+			die "Invalid flag: $opt"
 			;;
 	esac
 done
