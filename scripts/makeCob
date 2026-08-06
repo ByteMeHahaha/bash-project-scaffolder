@@ -39,6 +39,13 @@ verbose=false # Verbose output
 # String variables
 projName="" # Name of project directory
 
+if [[ -z "$1" ]]; then
+	die "Project name not specified."
+fi
+
+projName="$1"
+shift
+
 while getopts 'bfghmsvx' opt; do
 	case "$opt" in
 		b)
@@ -85,3 +92,5 @@ while getopts 'bfghmsvx' opt; do
 			;;
 	esac
 done
+
+mkdir "$projName" || die "Project directory failed to be created."
