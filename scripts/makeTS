@@ -23,7 +23,7 @@ if [[ $# -eq 0 ]]; then
 	exit 1
 fi
 
-# If the argument is an empty string
+# If the argument supplied to the app is an empty string
 if [[ -z "$1" ]]; then
 	# Display an error message and exit
 	die "Project name is required."
