@@ -37,7 +37,8 @@ options via `getopts`:
 
 - `-b` (Bare Mode) => Creates a minimal, flattened project structure. This
   means that there will be no `src` directory or `bin` directory. This can
-  aid beginners to the COBOL language.
+  aid beginners to the COBOL language who aren't familiar with multi-folder
+  project layouts.
 - `-f` (Full Project Mode) => Creates a full project structure (same as
   specifying `-g`, `-s`, and `-m`, or specifying `-gsm`)
 - `-g` => Creates a Git repository in the project directory
