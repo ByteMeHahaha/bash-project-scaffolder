@@ -94,3 +94,31 @@ while getopts 'bfghmsvx' opt; do
 done
 
 mkdir "$projName" || die "Project directory failed to be created."
+
+# Create the empty, flattened project and exit
+if [[ "$bare" == true ]]; then
+	# run commands in a subshell
+	(
+		# Change into project directory
+		cd "$projName"
+
+		if [[ "$fixed" == true ]]; then
+			# Create an empty fixed format COBOL file
+			touch main.cbl
+		else
+			# Create an empty free format COBOL file
+			touch main.cob
+		fi
+
+		# Create an empty README file
+		touch README.md
+
+		if [[ "$gitRepo" == true ]]; then
+			# Create an empty .gitignore
+			touch .gitignore
+		fi
+	)
+
+	# Stop the script
+	exit 0
+fi
