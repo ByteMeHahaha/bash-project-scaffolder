@@ -15,6 +15,7 @@ written in Bash
   - [Scripts](#scripts)
     - [`makeTS`](#makets)
     - [`makeCob`](#makecob)
+      - [Handling Edge Cases Using `getopts` Boolean Flags](#handling-edge-cases-using-getopts-boolean-flags)
 
 ## Scripts
 
@@ -48,3 +49,17 @@ options via `getopts`:
 - `-v` => Enable verbose output for `makeCob`
 - `-x` => Uses fixed format code instead of free format code when generating
   the project.
+
+#### Handling Edge Cases Using `getopts` Boolean Flags
+
+While experimenting with `getopts`, I thought of something: What if the user
+provides contradicting flags, like specifying a minimal project setup flag AND
+a full project setup flag?
+
+In `makeCob`, I attempted to handle edge cases like this by using Boolean
+flags for each option. This, coupled with not running any commands within the
+`getopts` loop allows for the most recent, possibly conflicting
+setup flag to take effect. This means that if the user specified `-bf`, the
+full project structure is generated, and conversely, if `-fb` is specified,
+the "Bare Mode" project will be generated. This also allows for the `-h` flag to
+work as intended without running alongside other flags.
