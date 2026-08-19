@@ -43,7 +43,10 @@ if [[ -z "$1" ]]; then
 	die "Project name not specified."
 fi
 
+# Store the project name in a variable
 projName="$1"
+
+# Remove the project name from the arguments list
 shift
 
 while getopts 'bfghmsvx' opt; do
