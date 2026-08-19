@@ -120,6 +120,11 @@ if [[ "$bare" == true ]]; then
 			# Create an empty .gitignore
 			touch .gitignore
 		fi
+
+		if [[ "$makefile" == true ]]; then
+			# Create an empty Makefile
+			touch makefile
+		fi
 	)
 
 	# Stop the script
