@@ -157,9 +157,11 @@ fi
 	vout "In project folder ($projName)"
 
 	mkdir src
+	vout "Created src directory"
 
 	(
 		cd src
+		vout "In src directory"
 
 		if [[ "$fixed" == true ]]; then
 			# IMPORTANT!! Do not replace spaces with tabs in this string
@@ -173,6 +175,8 @@ fi
 
 			       END PROGRAM NewFixedProject.
 			EOF
+
+			vout "Created main.cbl"
 		else
 			cat > main.cob <<-EOF
 			IDENTIFICATION DIVISION.
@@ -183,6 +187,8 @@ fi
 				 STOP RUN.
 			END PROGRAM NewFreeProject.
 			EOF
+
+			vout "Created main.cob"
 		fi
 	)
 
