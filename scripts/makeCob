@@ -149,3 +149,41 @@ if [[ "$bare" == true ]]; then
 	# Stop the script
 	exit 0
 fi
+
+# Run full project scaffolding in a subshell
+(
+	# Navigate into the new project folder
+	cd "$projName"
+	vout "In project folder ($projName)"
+
+	mkdir src
+
+	(
+		cd src
+
+		if [[ "$fixed" == true ]]; then
+			# IMPORTANT!! Do not replace spaces with tabs in this string
+			cat > main.cbl <<-EOF
+			       IDENTIFICATION DIVISION.
+			       PROGRAM-ID. NewFixedProject.
+
+			       PROCEDURE DIVISION.
+			          DISPLAY 'Hello, World!'.
+			          STOP RUN.
+
+			       END PROGRAM NewFixedProject.
+			EOF
+		else
+			cat > main.cob <<-EOF
+			IDENTIFICATION DIVISION.
+			   PROGRAM-ID. NewFreeProject.
+
+			PROCEDURE DIVISION.
+			   DISPLAY 'Hello, World!'.
+				 STOP RUN.
+			END PROGRAM NewFreeProject.
+			EOF
+		fi
+	)
+
+)
