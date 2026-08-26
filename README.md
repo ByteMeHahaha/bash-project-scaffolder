@@ -15,7 +15,7 @@ written in Bash
   - [Scripts](#scripts)
     - [`makeTS`](#makets)
     - [`makeCob`](#makecob)
-      - [Handling Edge Cases Using `getopts` Boolean Flags](#handling-edge-cases-using-getopts-boolean-flags)
+      - [Handling Edge Cases Using `getopts` and Boolean Flags](#handling-edge-cases-using-getopts-and-boolean-flags)
 
 ## Scripts
 
@@ -50,7 +50,7 @@ options via `getopts`:
 - `-x` => Uses fixed format code instead of free format code when generating
   the project.
 
-#### Handling Edge Cases Using `getopts` Boolean Flags
+#### Handling Edge Cases Using `getopts` and Boolean Flags
 
 While experimenting with `getopts`, I thought of something: What if the user
 provides contradicting flags, like specifying a minimal project setup flag AND
