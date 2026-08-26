@@ -14,7 +14,7 @@ die() {
 }
 
 # Store the help menu in "$usage"
-read usage <<EOF
+read -r usage <<EOF
 Usage: $(basename "$0") <project-name> [OPTS]...
 -------------------------------------------------
 Where OPTS includes:
@@ -38,6 +38,14 @@ verbose=false # Verbose output
 
 # String variables
 projName="" # Name of project directory
+
+# Function for verbose output
+vout() {
+	if [[ "$verbose" == true ]]; then
+		# Output a message if verbose output is on
+		echo "[VRB] $*"
+	fi
+}
 
 if [[ -z "$1" ]]; then
 	die "Project name not specified."
@@ -104,26 +112,37 @@ if [[ "$bare" == true ]]; then
 	(
 		# Change into project directory
 		cd "$projName"
+		vout "In directory $projName"
 
 		if [[ "$fixed" == true ]]; then
 			# Create an empty fixed format COBOL file
 			touch main.cbl
+			vout "Created empty fixed format COBOL file"
 		else
 			# Create an empty free format COBOL file
 			touch main.cob
+			vout "Created empty free format COBOL file"
 		fi
 
 		# Create an empty README file
 		touch README.md
+		vout "Created empty README"
 
 		if [[ "$gitRepo" == true ]]; then
 			# Create an empty .gitignore
 			touch .gitignore
+			vout "Created empty .gitignore"
 		fi
 
 		if [[ "$makefile" == true ]]; then
 			# Create an empty Makefile
 			touch makefile
+			vout "Created empty Makefile"
+		fi
+
+		if [[ "$scripts" == true  ]]; then
+			touch build.sh
+			vout "Created empty build Bash script"
 		fi
 	)
 
