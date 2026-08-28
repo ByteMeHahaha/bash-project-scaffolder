@@ -142,7 +142,10 @@ if [[ "$bare" == true ]]; then
 
 		if [[ "$scripts" == true  ]]; then
 			touch build.sh
-			vout "Created empty build Bash script"
+			vout "Created empty Bash build script"
+
+			touch lint.sh
+			vout "Created empty Bash lint script"
 		fi
 	)
 
@@ -158,6 +161,9 @@ fi
 
 	mkdir src
 	vout "Created src directory"
+
+	mkdir bin
+	vout "Created output directory (bin)"
 
 	(
 		cd src
@@ -192,4 +198,20 @@ fi
 		fi
 	)
 
+	if [[ "$gitRepo" == true ]]; then
+		git init || die 'Git not installed'
+		vout 'Git repository initialised'
+
+		cat > .gitignore <<-EOF
+		# Build Artifacts
+		bin/
+		*.exe
+		*.dll
+		*.lst
+		*.so
+		*.zip
+		EOF
+
+		vout "Created .gitignore template"
+	fi
 )
