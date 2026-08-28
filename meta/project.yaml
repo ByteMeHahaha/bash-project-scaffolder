@@ -14,7 +14,8 @@ build:
   test-environments:
     - Ubuntu (WSL2)
   target-platforms:
-    - Linux
+    - Linux (OS)
+    - Linux (WSL)
   interpreter:
     interpreter-name: Bash
     interpreter-version: 5.2.21
