@@ -4,7 +4,7 @@ project-meta:
   last-updated: 2026-08-28
   languages:
     - Bash
-  status: Experimental
+  status: Stable
   license: MIT
   version: 0.1.0
 
