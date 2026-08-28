@@ -4,7 +4,7 @@ A collection of simple programming project scaffolding scripts
 written in Bash
 
 - Author: Ethan Kletschke
-- Version: `0.0.4`
+- Version: `0.1.0`
 - Developed on: Ubuntu (WSL2)
 - License: MIT
 
@@ -15,6 +15,7 @@ written in Bash
   - [Scripts](#scripts)
     - [`makeTS`](#makets)
     - [`makeCob`](#makecob)
+      - [CLI Options](#cli-options)
       - [Handling Edge Cases Using `getopts` and Boolean Flags](#handling-edge-cases-using-getopts-and-boolean-flags)
 
 ## Scripts
@@ -33,8 +34,11 @@ Requirements:
 
 ### `makeCob`
 
-`makeCob` scaffolds a GnuCOBOL project. It takes the following command line
-options via `getopts`:
+`makeCob` scaffolds a GnuCOBOL project.
+
+#### CLI Options
+
+`makeCob` takes the following command line options via `getopts`:
 
 - `-b` (Bare Mode) => Creates a minimal, flattened project structure. This
   means that there will be no `src` directory or `bin` directory. This can
